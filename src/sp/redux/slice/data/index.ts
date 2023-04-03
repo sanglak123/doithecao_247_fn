@@ -1,17 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
-import { DataPublic } from "@/sp/interfade/DataPublic.Type";
+import {
+  Interfade_Bank_Item,
+  Interfade_Card,
+  Interfade_DataPublic,
+  Interfade_Price_Item,
+} from "@/sp/interfade/DataPublic.Type";
 
-const initialState: DataPublic = {
-  Prices: [],
-  Cards: [],
-  Banks: [],
+const initialState: Interfade_DataPublic = {
+  Prices: [] as Interfade_Price_Item[],
+  Cards: [] as Interfade_Card[],
+  Banks: [] as Interfade_Bank_Item[],
 };
 const DataPublic = createSlice({
   name: "User",
   initialState,
   reducers: {
-    LoadDataPublic: (state, action) => {
+    LoadDataPublic: (state, action: PayloadAction<any>) => {
       state.Prices = action.payload.Prices;
       state.Banks = action.payload.Banks;
     },
@@ -19,7 +24,7 @@ const DataPublic = createSlice({
 });
 
 //Export Action
-export const {} = DataPublic.actions;
+export const { LoadDataPublic } = DataPublic.actions;
 //Export Selector
 export const DataPublicSelector = (state: RootState) => state.DataPublic;
 

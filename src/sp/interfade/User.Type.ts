@@ -1,18 +1,12 @@
-export interface InterFadeDataUser {
-  User: InterFadeUser;
+export interface Interfade_DataUser {
+  User: Interfade_User;
   accessToken: string;
-  Store: {
-    id: number;
-    telco: string;
-    value: string;
-    count: number;
-    fessBuy: number;
-  }[];
+  Store: Interfade_Store_Item[];
 }
 
-export interface InterFadeUser {
+export interface Interfade_User {
   id: number;
-  userName: string;
+  username: string;
   displayName: string;
   fullName: string;
   adress: string;
@@ -24,4 +18,12 @@ export interface InterFadeUser {
   wallet_number: string;
   partner_key: string;
   api_key: string;
+}
+
+export interface Interfade_Store_Item {
+  id: number;
+  telco: string;
+  value: string;
+  count: number;
+  fessBuy: number;
 }

@@ -6,6 +6,22 @@ body {
   box-sizing: border-box;
 }
 
+.logo {
+  margin-top: 10px;
+  text-align: center;
+  h1 {
+    font-family: anton_black;
+    font-style: italic;
+    line-height: 0.6;
+  }
+  span {
+    font-weight: 200 !important;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    font-style: italic;
+  }
+}
+
 .bg_green {
   background-color: $green_400 !important;
 }

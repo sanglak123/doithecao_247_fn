@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/sp/hooks";
 import { Sign_Out_Success, UserSelector } from "@/sp/redux/slice/users";
 import { useRouter } from "next/router";
 import React from "react";
-import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Button, Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 
 const Hearder = () => {
   const User = useAppSelector(UserSelector.User);
@@ -24,11 +24,23 @@ const Hearder = () => {
         variant="dark"
       >
         <Container>
-          <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <div className="logo">
+              <h1>DOITHE/247</h1>
+              <span>www.doithe247.com.vn</span>
+            </div>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
+              <Nav.Link
+                className={router.asPath === "/" ? "li_active" : "hearder_link"}
+                href="/"
+              >
+                Home
+              </Nav.Link>
+
               <Nav.Link
                 className={
                   router.asPath === "/doi-the" ? "li_active" : "hearder_link"
@@ -45,28 +57,25 @@ const Hearder = () => {
               >
                 Mua thẻ
               </Nav.Link>
-              <NavDropdown
+
+              <Nav.Link
                 className={
-                  router.asPath === "/nap-tien" ||
-                  (router.asPath === "/rut-tien" ? "li_active" : "hearder_link")
+                  router.asPath === "/nap-tien" ? "li_active" : "hearder_link"
                 }
-                title="Nạp / Rút"
-                id="collasible-nav-dropdown"
+                href="/nap-tien"
               >
-                <NavDropdown.Item href="/nap-tien">Nạp tiền</NavDropdown.Item>
-                <NavDropdown.Item href="rut-tien">Rút tiền</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item
-                  className={
-                    router.asPath === "/quy-so-du"
-                      ? "li_active"
-                      : "hearder_link"
-                  }
-                  href="/quy-so-du"
-                >
-                  Quỹ - Số dư
-                </NavDropdown.Item>
-              </NavDropdown>
+                Nạp Tiền
+              </Nav.Link>
+
+              <Nav.Link
+                className={
+                  router.asPath === "/rut-tien" ? "li_active" : "hearder_link"
+                }
+                href="/rut-tien"
+              >
+                Rút Tiền
+              </Nav.Link>
+
               <Nav.Link
                 className={
                   router.asPath === "/connect-api"
@@ -89,7 +98,24 @@ const Hearder = () => {
             <Nav>
               {accessToken && User ? (
                 <>
-                  <Button onClick={() => handleSign_Out()}>Sign Out</Button>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                      {User?.username?.toLocaleUpperCase()} {User?.surplus}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        href={`/${User?.username}/thong-tin-tai-khoan`}
+                      >
+                        Thông tin tài khoản
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Quỷ số dư</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Something else
+                      </Dropdown.Item>
+                      <Button onClick={handleSign_Out}>Đăng xuất</Button>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </>
               ) : (
                 <>

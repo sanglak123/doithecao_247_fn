@@ -9,15 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      refreshToken: {
-        type: Sequelize.STRING,
-      },
       idUser: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id",
-        },
+      },
+      refresh_token: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

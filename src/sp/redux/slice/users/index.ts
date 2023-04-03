@@ -1,11 +1,15 @@
-import { InterFadeDataUser, InterFadeUser } from "@/sp/interfade/User.Type";
+import {
+  Interfade_DataUser,
+  Interfade_Store_Item,
+  Interfade_User,
+} from "@/sp/interfade/User.Type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
 
-const initialState: InterFadeDataUser = {
-  User: {} as InterFadeUser,
-  accessToken: "",
-  Store: [],
+const initialState: Interfade_DataUser = {
+  User: {} as Interfade_User,
+  accessToken: "" as string,
+  Store: [] as Interfade_Store_Item[],
 };
 const UserSlice = createSlice({
   name: "User",
@@ -17,7 +21,7 @@ const UserSlice = createSlice({
       state.accessToken = action.payload.accessToken;
     },
     Sign_Out_Success: (state) => {
-      state.User = {} as InterFadeUser;
+      state.User = {} as Interfade_User;
       state.accessToken = "";
       state.Store = [];
     },
